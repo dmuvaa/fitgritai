@@ -1,0 +1,91 @@
+services:
+  # Main Web Application
+  - type: web
+    name: fitgrit-ai
+    runtime: node
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_PUBLIC_SITE_URL
+        sync: false
+      - key: OPENROUTER_API_KEY
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false
+      - key: CRON_SECRET
+        sync: false
+        generateValue: true
+      - fromGroup: supabase
+
+  # Daily Email Cron Job
+  - type: cron
+    name: fitgrit-daily-emails
+    runtime: node
+    env: node
+    schedule: "0 9 * * *"  # Every day at 9 AM UTC
+    buildCommand: npm install
+    startCommand: node scripts/cron/send-daily-emails.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_PUBLIC_SITE_URL
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false
+      - key: CRON_SECRET
+        sync: false
+      - fromGroup: supabase
+
+  # Weekly Email Cron Job
+  - type: cron
+    name: fitgrit-weekly-emails
+    runtime: node
+    env: node
+    schedule: "0 19 * * 0"  # Every Sunday at 7 PM UTC
+    buildCommand: npm install
+    startCommand: node scripts/cron/send-weekly-emails.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_PUBLIC_SITE_URL
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false
+      - key: CRON_SECRET
+        sync: false
+      - fromGroup: supabase
+
+  # Re-engagement Email Cron Job
+  - type: cron
+    name: fitgrit-engagement-emails
+    runtime: node
+    env: node
+    schedule: "0 10 * * 1"  # Every Monday at 10 AM UTC
+    buildCommand: npm install
+    startCommand: node scripts/cron/send-engagement-emails.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_PUBLIC_SITE_URL
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false
+      - key: CRON_SECRET
+        sync: false
+      - fromGroup: supabase
+
+envVarGroups:
+  - name: supabase
+    envVars:
+      - key: NEXT_PUBLIC_SUPABASE_URL
+        sync: false
+      - key: NEXT_PUBLIC_SUPABASE_ANON_KEY
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+
