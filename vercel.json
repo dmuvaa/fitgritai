@@ -5,7 +5,7 @@
       "schedule": "0 9 * * *"
     },
     {
-      "path": "/api/cron/weekly-emails", 
+      "path": "/api/cron/weekly-emails",
       "schedule": "0 19 * * 0"
     },
     {
@@ -14,7 +14,13 @@
     }
   ],
   "functions": {
-    "app/api/cron/**": {
+    "app/api/cron/daily-emails/route.ts": {
+      "maxDuration": 300
+    },
+    "app/api/cron/weekly-emails/route.ts": {
+      "maxDuration": 300
+    },
+    "app/api/cron/engagement-emails/route.ts": {
       "maxDuration": 300
     },
     "app/api/ai/**": {
