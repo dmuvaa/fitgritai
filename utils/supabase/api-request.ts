@@ -8,7 +8,7 @@ import { createClient as createServerClient } from "./server"
 
 export async function getSupabaseForRequest(request: Request) {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL!
-  const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  const anon = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!
 
   const authHeader = request.headers.get("authorization") || ""
   const token = authHeader.startsWith("Bearer ") ? authHeader.slice(7) : undefined
