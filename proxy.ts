@@ -41,9 +41,9 @@
 // }
 
 import { type NextRequest, NextResponse } from "next/server"
-import { updateSession } from "./utils/supabase/middleware"
+import { updateSession } from "./utils/supabase/proxy"
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   try {
     // 1. Config Check
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
