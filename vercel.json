@@ -12,13 +12,5 @@
       "path": "/api/cron/engagement-emails",
       "schedule": "0 10 * * 1"
     }
-  ],
-  "functions": {
-    "app/api/cron/**": {
-      "maxDuration": 300
-    },
-    "app/api/ai/**": {
-      "maxDuration": 60
-    }
-  }
+  ]
 }
