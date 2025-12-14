@@ -14,16 +14,16 @@
     }
   ],
   "functions": {
-    "app/api/cron/daily-emails": {
+    "api/cron/daily-emails": {
       "maxDuration": 300
     },
-    "app/api/cron/weekly-emails": {
+    "api/cron/weekly-emails": {
       "maxDuration": 300
     },
-    "app/api/cron/engagement-emails": {
+    "api/cron/engagement-emails": {
       "maxDuration": 300
     },
-    "app/api/ai/**": {
+    "api/ai/**": {
       "maxDuration": 60
     }
   }
