@@ -14,16 +14,16 @@
     }
   ],
   "functions": {
-    "app/api/cron/daily-emails/route.ts": {
+    "/api/cron/daily-emails/route.ts": {
       "maxDuration": 300
     },
-    "app/api/cron/weekly-emails/route.ts": {
+    "/api/cron/weekly-emails/route.ts": {
       "maxDuration": 300
     },
-    "app/api/cron/engagement-emails/route.ts": {
+    "/api/cron/engagement-emails/route.ts": {
       "maxDuration": 300
     },
-    "app/api/ai/**": {
+    "/api/ai/**": {
       "maxDuration": 60
     }
   }
