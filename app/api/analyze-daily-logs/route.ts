@@ -314,7 +314,7 @@ function generateLocalAnalysis(date: string, logs: any, profile: any, goals: any
   // Mood section
   if (logs.moods.length > 0) {
     const mood = logs.moods[0]
-    sections.push(`\n**Mood:** ${mood.mood}/5 | Energy: ${mood.energy}/5 | Motivation: ${mood.motivation}/5`)
+    sections.push(`\n**Mood:** ${mood.mood}/10 | Energy: ${mood.energy}/10 | Motivation: ${mood.motivation}/10`)
   } else {
     sections.push("\n**Mood:** Not logged")
   }
