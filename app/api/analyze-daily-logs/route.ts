@@ -197,7 +197,7 @@ ${
     ? safeLogs.moods
         .map(
           (mood: any, i: number) =>
-            `${i + 1}. Mood: ${mood.mood}/5, Energy: ${mood.energy}/5, Motivation: ${mood.motivation}/5${mood.notes ? ` (${mood.notes})` : ""}`,
+            `${i + 1}. Mood: ${mood.mood}/10, Energy: ${mood.energy}/10, Motivation: ${mood.motivation}/10${mood.notes ? ` (${mood.notes})` : ""}`,
         )
         .join("\n")
     : "- Not logged"

@@ -11,37 +11,21 @@ export async function POST(request: NextRequest) {
 
     const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY
 
-    if (!OPENROUTER_API_KEY) {
-      console.error("OPENROUTER_API_KEY not configured")
-      return NextResponse.json(
-        {
-          error: "AI service not configured",
-          calories: 500,
-          protein: 30,
-          carbs: 50,
-          fat: 20,
-          fiber: 5,
-          sugar: 10,
-          sodium: 500,
-          confidence: 50,
-          reasoning: "API key not configured - using estimates",
-          suggestions: "Configure OPENROUTER_API_KEY to get accurate nutrition analysis",
-        },
-        { status: 200 },
-      )
-    }
-
-    // Call OpenRouter API for meal analysis
+    // Call OpenRouter API for meal analysis with robust configuration
     const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${OPENROUTER_API_KEY}`,
         "Content-Type": "application/json",
         "HTTP-Referer": process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
-        "X-Title": "FitGrit AI",
+        "X-Title": "FitGrit Meal Analyzer",
       },
       body: JSON.stringify({
-        model: "anthropic/claude-3.5-sonnet",
+        model: "openai/gpt-5",
+        // provider: {
+        //   order: ["OpenAI", "Anthropic"],
+        //   allow_fallbacks: true 
+        // },
         messages: [
           {
             role: "system",
@@ -71,7 +55,7 @@ Be as accurate as possible based on standard nutrition databases (USDA, etc.). C
           },
         ],
         temperature: 0.3,
-        max_tokens: 500,
+        max_tokens: 1000,
       }),
     })
 
@@ -82,7 +66,9 @@ Be as accurate as possible based on standard nutrition databases (USDA, etc.). C
     }
 
     const data = await response.json()
-    let content = data.choices[0]?.message?.content
+    console.log("OpenRouter response:", JSON.stringify(data, null, 2))
+
+    let content = data.choices?.[0]?.message?.content
 
     if (!content) {
       throw new Error("No content in AI response")
@@ -91,9 +77,9 @@ Be as accurate as possible based on standard nutrition databases (USDA, etc.). C
     // Clean up the response - remove markdown code blocks if present
     content = content.trim()
     if (content.startsWith("```json")) {
-      content = content.replace(/```json\n?/g, "").replace(/```\n?/g, "")
+      content = content.replace(/```json\s*([\s\S]*?)\s*```/, "$1")
     } else if (content.startsWith("```")) {
-      content = content.replace(/```\n?/g, "")
+      content = content.replace(/```\s*([\s\S]*?)\s*```/, "$1")
     }
 
     // Parse the JSON response
@@ -137,8 +123,8 @@ Be as accurate as possible based on standard nutrition databases (USDA, etc.). C
         sugar: 8,
         sodium: 400,
         confidence: 40,
-        reasoning: "Unable to analyze meal - using general estimates",
-        suggestions: "Try to provide more specific portion sizes for better accuracy",
+        reasoning: `Analysis failed: ${error instanceof Error ? error.message : String(error)}`,
+        suggestions: "Please try again or enter details manually.",
       },
       { status: 200 },
     )

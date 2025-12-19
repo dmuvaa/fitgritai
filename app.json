@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "aca01086-638e-49bb-a1e2-75ae2e1b294d"
+      }
+    },
+    "android": {
+      "package": "com.figritai.app"
+    }
+  }
+}
