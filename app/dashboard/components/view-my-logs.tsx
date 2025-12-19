@@ -196,7 +196,7 @@ function MoodLogList({ logs, onEdit, onDelete }: { logs: any[]; onEdit: (log: an
               <div>
                 <p className="font-medium text-pink-900 capitalize">{mood.mood || "Unknown"}</p>
                 {mood.energy_level && (
-                  <p className="text-sm text-pink-700">Energy: {mood.energy_level}/5</p>
+                  <p className="text-sm text-pink-700">Energy: {mood.energy_level}/10</p>
                 )}
               </div>
             </div>
