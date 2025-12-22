@@ -5,6 +5,7 @@ import { handleLogWorkout } from "./actions/logWorkout"
 import { handleLogMeal } from "./actions/logMeal"
 import { handleLogWeight } from "./actions/logWeight"
 import { handleUpdateBenchmark } from "./actions/updateBenchmark"
+import { handleUpdatePlan } from "./actions/updatePlan"
 import { updateContextSnapshot } from "./updateContextSnapshot"
 
 // ============================================================================
@@ -128,6 +129,8 @@ async function executeAction(job: CoachAction): Promise<any> {
     switch (job.action_type) {
         case "GENERATE_PLANS":
             return await handleGeneratePlans(job, supabase, APP_ORIGIN)
+        case "UPDATE_PLAN":
+            return await handleUpdatePlan(job, supabase, APP_ORIGIN)
         case "LOG_WORKOUT":
             return await handleLogWorkout(job, supabase, APP_ORIGIN)
         case "LOG_MEAL":

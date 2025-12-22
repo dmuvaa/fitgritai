@@ -8,7 +8,8 @@ interface CoachAction {
 }
 
 /**
- * Generate personalized workout/meal plans via the existing API
+ * Generate personalized workout/meal plans
+ * Uses Supabase directly with service role (bypasses RLS)
  */
 export async function handleGeneratePlans(
     job: CoachAction,
@@ -16,35 +17,71 @@ export async function handleGeneratePlans(
     appOrigin: string
 ): Promise<any> {
     const { user_id, payload } = job
+    const params = payload?.parameters || payload || {}
 
-    // Get a service token for internal API calls
-    // The API will use this to authenticate as the user
-    const response = await fetch(
-        `${appOrigin}/api/personalized-plans/generate-from-data`,
-        {
+    // Check if user has a fitness profile
+    const { data: profile, error: profileError } = await supabase
+        .from("user_fitness_profile")
+        .select("id, workout_days, primary_goals, fitness_level")
+        .eq("user_id", user_id)
+        .maybeSingle()
+
+    if (profileError || !profile) {
+        throw new Error("Fitness profile not found. Complete your profile first.")
+    }
+
+    // Create a plan generation job
+    const today = new Date().toISOString().split("T")[0]
+    const schedule = (profile.workout_days || ["Monday", "Wednesday", "Friday"]).map((day: string) => ({
+        day,
+        focus: params.focus || profile.primary_goals?.[0] || "General Fitness",
+    }))
+
+    const { data: jobData, error: jobError } = await supabase
+        .from("plan_generation_jobs")
+        .insert({
+            user_id,
+            status: "pending",
+            request_payload: {
+                startDate: today,
+                schedule,
+                ...params,
+            },
+        })
+        .select("id")
+        .single()
+
+    if (jobError) {
+        throw new Error(`Failed to create plan job: ${jobError.message}`)
+    }
+
+    // Trigger the edge function to process the job
+    const edgeFunctionUrl = process.env.SUPABASE_EDGE_FUNCTION_URL ||
+        "https://hipdgmzzdvipcsqxqnhn.supabase.co/functions/v1/dynamic-endpoint"
+    const svcKey = process.env.SUPABASE_SERVICE_ROLE_KEY!
+
+    try {
+        const response = await fetch(edgeFunctionUrl, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "X-Service-Role": "true",
-                "X-User-Id": user_id,
+                "Authorization": `Bearer ${svcKey}`,
+                "apikey": svcKey,
             },
-            body: JSON.stringify({
-                userId: user_id,
-                ...(payload?.parameters || {}),
-            }),
+            body: JSON.stringify({ job_id: jobData.id, user_id }),
+        })
+
+        if (!response.ok) {
+            const text = await response.text()
+            console.log(`[Worker] Plan generation triggered but got ${response.status}: ${text}`)
         }
-    )
-
-    if (!response.ok) {
-        const text = await response.text()
-        throw new Error(`GENERATE_PLANS failed: ${response.status} - ${text}`)
+    } catch (err: any) {
+        console.error("[Worker] Failed to trigger edge function:", err.message)
     }
-
-    const data = await response.json()
 
     return {
         success: true,
-        plansGenerated: data.plans?.length || 0,
-        message: `Generated ${data.plans?.length || 0} new plans`,
+        message: `Plan generation job created (ID: ${jobData.id}). Processing in background.`,
+        jobId: jobData.id,
     }
 }

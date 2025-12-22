@@ -8,7 +8,7 @@ interface CoachAction {
 }
 
 /**
- * Log a meal via the existing meals API
+ * Log a meal directly to meal_logs table
  */
 export async function handleLogMeal(
     job: CoachAction,
@@ -19,39 +19,30 @@ export async function handleLogMeal(
     const params = payload?.parameters || payload || {}
     const today = new Date().toISOString().split("T")[0]
 
-    const response = await fetch(
-        `${appOrigin}/api/logs/meals`,
-        {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-Service-Role": "true",
-                "X-User-Id": user_id,
-            },
-            body: JSON.stringify({
-                meal_type: params.meal_type || "Other",
-                description: params.description || params.original_message || "",
-                date: params.date || today,
-                meal_time: params.meal_time,
-                calories: params.calories,
-                protein: params.protein,
-                carbs: params.carbs,
-                fat: params.fat,
-                foods: params.foods,
-            }),
-        }
-    )
+    const { data, error } = await supabase
+        .from("meal_logs")
+        .insert({
+            user_id,
+            meal_type: params.meal_type || "Other",
+            description: params.description || params.original_message || "",
+            date: params.date || today,
+            meal_time: params.meal_time || new Date().toISOString(),
+            calories: params.calories || null,
+            protein: params.protein || null,
+            carbs: params.carbs || null,
+            fat: params.fat || null,
+            foods: params.foods || null,
+        })
+        .select("id")
+        .single()
 
-    if (!response.ok) {
-        const text = await response.text()
-        throw new Error(`LOG_MEAL failed: ${response.status} - ${text}`)
+    if (error) {
+        throw new Error(`LOG_MEAL failed: ${error.message}`)
     }
-
-    const data = await response.json()
 
     return {
         success: true,
-        message: "Meal logged successfully",
+        message: "Meal logged successfully! 🍽️",
         logId: data.id,
     }
 }

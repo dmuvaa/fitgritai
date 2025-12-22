@@ -8,7 +8,7 @@ interface CoachAction {
 }
 
 /**
- * Log weight via the existing weight API
+ * Log weight directly to weight_logs table
  */
 export async function handleLogWeight(
     job: CoachAction,
@@ -19,33 +19,28 @@ export async function handleLogWeight(
     const params = payload?.parameters || payload || {}
     const today = new Date().toISOString().split("T")[0]
 
-    const response = await fetch(
-        `${appOrigin}/api/logs/weight`,
-        {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-Service-Role": "true",
-                "X-User-Id": user_id,
-            },
-            body: JSON.stringify({
-                weight: params.weight,
-                date: params.date || today,
-                notes: params.notes,
-            }),
-        }
-    )
-
-    if (!response.ok) {
-        const text = await response.text()
-        throw new Error(`LOG_WEIGHT failed: ${response.status} - ${text}`)
+    if (!params.weight && !params.value) {
+        throw new Error("Weight value is required")
     }
 
-    const data = await response.json()
+    const { data, error } = await supabase
+        .from("weight_logs")
+        .insert({
+            user_id,
+            weight: params.weight || params.value,
+            date: params.date || today,
+            notes: params.notes || null,
+        })
+        .select("id")
+        .single()
+
+    if (error) {
+        throw new Error(`LOG_WEIGHT failed: ${error.message}`)
+    }
 
     return {
         success: true,
-        message: "Weight logged successfully",
+        message: `Weight logged: ${params.weight || params.value} kg ⚖️`,
         logId: data.id,
     }
 }
