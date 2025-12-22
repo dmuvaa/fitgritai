@@ -4,7 +4,7 @@ import { getSupabaseForRequest } from "@/utils/supabase/api-request"
 // (Optional) simple CORS helper – inline to avoid extra files
 const withCORS = (res: NextResponse) => {
   res.headers.set("Access-Control-Allow-Origin", process.env.NEXT_PUBLIC_SITE_URL || "*")
-  res.headers.set("Access-Control-Allow-Methods", "GET,POST,OPTIONS")
+  res.headers.set("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS")
   res.headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization")
   res.headers.set("Access-Control-Max-Age", "86400")
   return res
@@ -182,6 +182,112 @@ export async function POST(request: NextRequest) {
     return withCORS(NextResponse.json(data))
   } catch (error: any) {
     console.error("Meal logs POST error:", error)
+    return withCORS(NextResponse.json({ error: error.message || "Server error" }, { status: 500 }))
+  }
+}
+
+export async function PUT(request: NextRequest) {
+  try {
+    const supabase = await getSupabaseForRequest(request)
+
+    const {
+      data: { user },
+      error: authError,
+    } = await supabase.auth.getUser()
+
+    if (authError || !user) {
+      return withCORS(NextResponse.json({ error: "Unauthorized" }, { status: 401 }))
+    }
+
+    const { searchParams } = new URL(request.url)
+    const id = searchParams.get("id")
+
+    if (!id) {
+      return withCORS(NextResponse.json({ error: "ID is required" }, { status: 400 }))
+    }
+
+    const body = await request.json()
+
+    // Build update payload with only provided fields
+    const updateData: any = {}
+
+    if (body.meal_type !== undefined) updateData.meal_type = String(body.meal_type).trim().toLowerCase()
+    if (body.description !== undefined) updateData.description = String(body.description).trim()
+    if (body.date !== undefined) updateData.date = body.date
+    if (body.meal_time !== undefined) {
+      // Normalize time format
+      const parts = String(body.meal_time).trim().split(":")
+      if (parts.length >= 2) {
+        const hh = parts[0].padStart(2, "0").slice(0, 2)
+        const mm = parts[1].padStart(2, "0").slice(0, 2)
+        updateData.meal_time = `${hh}:${mm}`
+      }
+    }
+    if (body.foods !== undefined) {
+      updateData.foods = typeof body.foods === "string" ? body.foods : JSON.stringify(body.foods)
+    }
+    if (body.calories !== undefined) updateData.calories = toNumberOrNull(body.calories)
+    if (body.protein !== undefined) updateData.protein = toNumberOrNull(body.protein)
+    if (body.carbs !== undefined) updateData.carbs = toNumberOrNull(body.carbs)
+    if (body.fat !== undefined) updateData.fat = toNumberOrNull(body.fat)
+    if (body.fiber !== undefined) updateData.fiber = toNumberOrNull(body.fiber)
+    if (body.sugar !== undefined) updateData.sugar = toNumberOrNull(body.sugar)
+    if (body.sodium !== undefined) updateData.sodium = toNumberOrNull(body.sodium)
+
+    const { data, error } = await supabase
+      .from("meal_logs")
+      .update(updateData)
+      .eq("id", id)
+      .eq("user_id", user.id)
+      .select()
+      .single()
+
+    if (error) {
+      console.error("Update meal log error:", error)
+      return withCORS(NextResponse.json({ error: error.message }, { status: 400 }))
+    }
+
+    return withCORS(NextResponse.json(data))
+  } catch (error: any) {
+    console.error("Meal logs PUT error:", error)
+    return withCORS(NextResponse.json({ error: error.message || "Server error" }, { status: 500 }))
+  }
+}
+
+export async function DELETE(request: NextRequest) {
+  try {
+    const supabase = await getSupabaseForRequest(request)
+
+    const {
+      data: { user },
+      error: authError,
+    } = await supabase.auth.getUser()
+
+    if (authError || !user) {
+      return withCORS(NextResponse.json({ error: "Unauthorized" }, { status: 401 }))
+    }
+
+    const { searchParams } = new URL(request.url)
+    const id = searchParams.get("id")
+
+    if (!id) {
+      return withCORS(NextResponse.json({ error: "ID is required" }, { status: 400 }))
+    }
+
+    const { error } = await supabase
+      .from("meal_logs")
+      .delete()
+      .eq("id", id)
+      .eq("user_id", user.id)
+
+    if (error) {
+      console.error("Delete meal log error:", error)
+      return withCORS(NextResponse.json({ error: error.message }, { status: 400 }))
+    }
+
+    return withCORS(NextResponse.json({ success: true }))
+  } catch (error: any) {
+    console.error("Meal logs DELETE error:", error)
     return withCORS(NextResponse.json({ error: error.message || "Server error" }, { status: 500 }))
   }
 }

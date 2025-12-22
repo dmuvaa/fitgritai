@@ -19,6 +19,12 @@ export async function handleLogWorkout(
     const params = payload?.parameters || payload || {}
     const today = new Date().toISOString().split("T")[0]
 
+    // Extract just the time portion (HH:MM:SS) - database expects TIME not TIMESTAMP
+    let workoutTime = params.workout_time
+    if (workoutTime && workoutTime.includes("T")) {
+        workoutTime = workoutTime.split("T")[1]?.split(".")[0] || null
+    }
+
     const { data, error } = await supabase
         .from("activity_logs")
         .insert({
@@ -26,7 +32,7 @@ export async function handleLogWorkout(
             workout_type: params.workout_type || params.type || "Other",
             description: params.description || params.original_message || "",
             duration: params.duration || null,
-            workout_time: params.workout_time || new Date().toISOString(),
+            workout_time: workoutTime || null,
             exercises: params.exercises || null,
             notes: params.notes || null,
             date: params.date || today,
