@@ -1,17 +1,17 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import Link from "next/link"
-import { ArrowLeft, Shield, Database, Globe, Lock, UserCheck, Mail, Clock, Baby, Scale } from "lucide-react"
+import { ArrowLeft, Shield, Database, Lock, UserCheck, Mail, Clock, Globe } from "lucide-react"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 
 export const metadata = {
   title: "Privacy Policy | FitGrit AI",
-  description: "Learn how FitGrit AI collects, uses, and protects your personal health and fitness data.",
+  description: "Learn how FitGrit AI collects, uses, and protects your personal information.",
 }
 
 export default function PrivacyPage() {
-  const lastUpdated = "December 11, 2024"
+  const lastUpdated = "December 23, 2025"
 
   return (
     <>
@@ -32,9 +32,40 @@ export default function PrivacyPage() {
                 <Shield className="h-8 w-8 text-white" />
               </div>
               <h1 className="text-4xl font-bold text-gray-900 mb-4">Privacy Policy</h1>
-              <p className="text-xl text-gray-600">Your privacy is as strong as your commitment</p>
+              <p className="text-xl text-gray-600">Your privacy matters to us</p>
               <p className="text-sm text-gray-500 mt-2">Last updated: {lastUpdated}</p>
             </div>
+          </div>
+
+          {/* Key Principles */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+            <Card className="border-0 shadow-lg">
+              <CardContent className="p-6 text-center">
+                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                  <Shield className="h-6 w-6 text-blue-600" />
+                </div>
+                <h3 className="font-bold text-gray-900 mb-2">Transparency</h3>
+                <p className="text-gray-600 text-sm">We are clear about what data we collect and how we use it</p>
+              </CardContent>
+            </Card>
+            <Card className="border-0 shadow-lg">
+              <CardContent className="p-6 text-center">
+                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                  <Lock className="h-6 w-6 text-green-600" />
+                </div>
+                <h3 className="font-bold text-gray-900 mb-2">Security</h3>
+                <p className="text-gray-600 text-sm">Your data is protected with industry-standard security measures</p>
+              </CardContent>
+            </Card>
+            <Card className="border-0 shadow-lg">
+              <CardContent className="p-6 text-center">
+                <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                  <UserCheck className="h-6 w-6 text-purple-600" />
+                </div>
+                <h3 className="font-bold text-gray-900 mb-2">Control</h3>
+                <p className="text-gray-600 text-sm">You have control over your personal information and settings</p>
+              </CardContent>
+            </Card>
           </div>
 
           {/* Table of Contents */}
@@ -42,21 +73,17 @@ export default function PrivacyPage() {
             <CardContent className="p-6">
               <h2 className="text-lg font-bold text-gray-900 mb-4">Contents</h2>
               <nav className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
-                <a href="#data-controller" className="text-blue-600 hover:text-blue-700">1. Data Controller</a>
-                <a href="#information-collected" className="text-blue-600 hover:text-blue-700">2. Information We Collect</a>
-                <a href="#legal-basis" className="text-blue-600 hover:text-blue-700">3. Legal Basis for Processing</a>
-                <a href="#how-we-use" className="text-blue-600 hover:text-blue-700">4. How We Use Your Information</a>
-                <a href="#data-sharing" className="text-blue-600 hover:text-blue-700">5. Data Sharing & Third Parties</a>
-                <a href="#data-security" className="text-blue-600 hover:text-blue-700">6. Data Security</a>
-                <a href="#data-retention" className="text-blue-600 hover:text-blue-700">7. Data Retention</a>
-                <a href="#international-transfers" className="text-blue-600 hover:text-blue-700">8. International Data Transfers</a>
-                <a href="#your-rights" className="text-blue-600 hover:text-blue-700">9. Your Rights</a>
-                <a href="#cookies" className="text-blue-600 hover:text-blue-700">10. Cookies & Tracking</a>
-                <a href="#children" className="text-blue-600 hover:text-blue-700">11. Children's Privacy</a>
-                <a href="#california" className="text-blue-600 hover:text-blue-700">12. California Privacy Rights</a>
-                <a href="#eu-uk" className="text-blue-600 hover:text-blue-700">13. EU/UK Privacy Rights</a>
-                <a href="#changes" className="text-blue-600 hover:text-blue-700">14. Changes to This Policy</a>
-                <a href="#contact" className="text-blue-600 hover:text-blue-700">15. Contact Us</a>
+                <a href="#information-collected" className="text-blue-600 hover:text-blue-700">1. Information We Collect</a>
+                <a href="#how-we-use" className="text-blue-600 hover:text-blue-700">2. How We Use Your Information</a>
+                <a href="#information-sharing" className="text-blue-600 hover:text-blue-700">3. Information Sharing</a>
+                <a href="#data-security" className="text-blue-600 hover:text-blue-700">4. Data Security</a>
+                <a href="#your-rights" className="text-blue-600 hover:text-blue-700">5. Your Rights and Choices</a>
+                <a href="#cookies" className="text-blue-600 hover:text-blue-700">6. Cookies and Tracking</a>
+                <a href="#data-transfers" className="text-blue-600 hover:text-blue-700">7. International Data Transfers</a>
+                <a href="#children" className="text-blue-600 hover:text-blue-700">8. Children's Privacy</a>
+                <a href="#retention" className="text-blue-600 hover:text-blue-700">9. Data Retention</a>
+                <a href="#changes" className="text-blue-600 hover:text-blue-700">10. Changes to This Policy</a>
+                <a href="#contact" className="text-blue-600 hover:text-blue-700">11. Contact Us</a>
               </nav>
             </CardContent>
           </Card>
@@ -66,384 +93,209 @@ export default function PrivacyPage() {
             <CardContent className="p-8 prose prose-gray max-w-none">
               <div className="space-y-10">
 
-                {/* 1. Data Controller */}
-                <section id="data-controller">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-                      <UserCheck className="h-5 w-5 text-blue-600" />
-                    </div>
-                    <h2 className="text-2xl font-bold text-gray-900 m-0">1. Data Controller</h2>
-                  </div>
-                  <p className="text-gray-700 leading-relaxed">
-                    FitGrit AI ("we", "us", or "our") is the data controller responsible for your personal data.
-                    We are committed to protecting your privacy and handling your data in an open and transparent manner.
-                  </p>
-                  <div className="bg-gray-50 rounded-lg p-4 mt-4">
-                    <p className="text-gray-700 m-0">
-                      <strong>Contact:</strong> privacy@fitgrit.ai<br />
-                      <strong>Data Protection Inquiries:</strong> dpo@fitgrit.ai
-                    </p>
-                  </div>
-                </section>
-
-                {/* 2. Information We Collect */}
+                {/* 1. Information We Collect */}
                 <section id="information-collected">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
                       <Database className="h-5 w-5 text-green-600" />
                     </div>
-                    <h2 className="text-2xl font-bold text-gray-900 m-0">2. Information We Collect</h2>
+                    <h2 className="text-2xl font-bold text-gray-900 m-0">1. Information We Collect</h2>
                   </div>
 
                   <div className="space-y-6">
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">2.1 Information You Provide</h3>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Personal Information</h3>
                       <ul className="list-disc list-inside space-y-2 text-gray-700">
-                        <li><strong>Account Information:</strong> Name, email address, password (encrypted)</li>
-                        <li><strong>Profile Data:</strong> Height, starting weight, goal weight, age, gender, activity level</li>
-                        <li><strong>Health & Fitness Data:</strong> Weight logs, meal descriptions and photos, activity logs, mood ratings, sleep data, workout records</li>
-                        <li><strong>AI Conversations:</strong> Messages exchanged with our AI coach</li>
-                        <li><strong>Payment Information:</strong> Processed securely by Paystack (we do not store card details)</li>
-                        <li><strong>Preferences:</strong> Notification settings, dietary preferences, fitness goals</li>
+                        <li><strong>Account Information:</strong> Name, email address, and password when you register</li>
+                        <li><strong>Profile Details:</strong> Profile photo, fitness goals, and preferences</li>
+                        <li><strong>Health & Fitness Data:</strong> Weight logs, meal descriptions, activity logs, workout records</li>
+                        <li><strong>Payment Information:</strong> Processed securely by third-party payment providers (we do not store card details)</li>
                       </ul>
                     </div>
 
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">2.2 Information Collected Automatically</h3>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Usage Information</h3>
                       <ul className="list-disc list-inside space-y-2 text-gray-700">
-                        <li><strong>Device Information:</strong> Device type, operating system, browser type</li>
-                        <li><strong>Usage Data:</strong> Features used, time spent, interaction patterns</li>
-                        <li><strong>Log Data:</strong> IP address, access times, pages viewed, app crashes</li>
-                        <li><strong>Location:</strong> General location (country/region) from IP address only</li>
+                        <li><strong>Activity Logs:</strong> Pages visited, features used, and interactions</li>
+                        <li><strong>Device Information:</strong> Device type, operating system, and browser type</li>
+                        <li><strong>Communication Data:</strong> Messages exchanged with our AI coach</li>
                       </ul>
-                    </div>
-
-                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                      <p className="text-blue-800 m-0">
-                        <strong>Sensitive Health Data:</strong> Weight, nutrition, and fitness data are considered sensitive personal information.
-                        We process this data only with your explicit consent to provide our coaching services.
-                      </p>
                     </div>
                   </div>
                 </section>
 
-                {/* 3. Legal Basis */}
-                <section id="legal-basis">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
-                      <Scale className="h-5 w-5 text-purple-600" />
-                    </div>
-                    <h2 className="text-2xl font-bold text-gray-900 m-0">3. Legal Basis for Processing</h2>
-                  </div>
-                  <p className="text-gray-700 leading-relaxed mb-4">
-                    We process your personal data under the following legal bases:
-                  </p>
+                {/* 2. How We Use Your Information */}
+                <section id="how-we-use">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-4">2. How We Use Your Information</h2>
                   <ul className="list-disc list-inside space-y-2 text-gray-700">
-                    <li><strong>Consent:</strong> For processing health data and sending marketing communications</li>
-                    <li><strong>Contract:</strong> To provide the fitness coaching services you've signed up for</li>
-                    <li><strong>Legitimate Interest:</strong> To improve our services, prevent fraud, and ensure security</li>
-                    <li><strong>Legal Obligation:</strong> To comply with applicable laws and regulations</li>
+                    <li><strong>Platform Services:</strong> To create and manage your account, process transactions, and provide our core services</li>
+                    <li><strong>Personalization:</strong> To provide personalized AI coaching, meal plans, and workout recommendations</li>
+                    <li><strong>Communication:</strong> To send you notifications about your progress, account activity, and platform updates</li>
+                    <li><strong>Improvement:</strong> To analyze usage patterns and improve our platform features</li>
+                    <li><strong>Legal Compliance:</strong> To comply with legal obligations and enforce our Terms and Conditions</li>
+                    <li><strong>Marketing:</strong> To send promotional content about new features (you can opt-out at any time)</li>
                   </ul>
                 </section>
 
-                {/* 4. How We Use Your Information */}
-                <section id="how-we-use">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-4">4. How We Use Your Information</h2>
-                  <div className="grid gap-4">
-                    <div className="bg-gray-50 rounded-lg p-4">
-                      <h4 className="font-semibold text-gray-900 mb-2">🎯 Core Services</h4>
-                      <ul className="list-disc list-inside space-y-1 text-gray-700">
-                        <li>Provide personalized AI coaching and feedback</li>
-                        <li>Track your progress and generate insights</li>
-                        <li>Create customized workout and meal plans</li>
-                        <li>Send reminder notifications (if enabled)</li>
-                      </ul>
-                    </div>
-                    <div className="bg-gray-50 rounded-lg p-4">
-                      <h4 className="font-semibold text-gray-900 mb-2">📊 Service Improvement</h4>
-                      <ul className="list-disc list-inside space-y-1 text-gray-700">
-                        <li>Improve AI algorithms and recommendations</li>
-                        <li>Analyze usage patterns (anonymized)</li>
-                        <li>Develop new features based on user needs</li>
-                        <li>Conduct research to improve health outcomes</li>
-                      </ul>
-                    </div>
-                    <div className="bg-gray-50 rounded-lg p-4">
-                      <h4 className="font-semibold text-gray-900 mb-2">🔒 Security & Support</h4>
-                      <ul className="list-disc list-inside space-y-1 text-gray-700">
-                        <li>Authenticate your identity and prevent fraud</li>
-                        <li>Provide customer support when requested</li>
-                        <li>Send important account and service updates</li>
-                        <li>Comply with legal obligations</li>
-                      </ul>
-                    </div>
-                  </div>
-                </section>
-
-                {/* 5. Data Sharing */}
-                <section id="data-sharing">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-4">5. Data Sharing & Third Parties</h2>
+                {/* 3. Information Sharing */}
+                <section id="information-sharing">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-4">3. Information Sharing</h2>
                   <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-4">
                     <p className="text-green-800 font-semibold m-0">
-                      ✓ We NEVER sell your personal data to third parties.
+                      ✓ We do NOT sell your personal data to third parties.
                     </p>
                   </div>
 
-                  <p className="text-gray-700 mb-4">We share data only with these service providers who help us operate our platform:</p>
-
                   <div className="space-y-4">
-                    <div className="border rounded-lg p-4">
-                      <h4 className="font-semibold text-gray-900">Supabase (Database & Authentication)</h4>
-                      <p className="text-gray-600 text-sm">Stores account and fitness data securely | EU-US Data Privacy Framework compliant</p>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">With Service Providers</h3>
+                      <ul className="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Payment processors for handling transactions</li>
+                        <li>Cloud hosting providers for data storage</li>
+                        <li>AI providers for generating personalized recommendations</li>
+                        <li>Communication services for email notifications</li>
+                      </ul>
                     </div>
-                    <div className="border rounded-lg p-4">
-                      <h4 className="font-semibold text-gray-900">OpenRouter (AI Processing)</h4>
-                      <p className="text-gray-600 text-sm">Processes AI coach conversations | Data not used for model training</p>
-                    </div>
-                    <div className="border rounded-lg p-4">
-                      <h4 className="font-semibold text-gray-900">Paystack (Payments)</h4>
-                      <p className="text-gray-600 text-sm">Processes subscription payments | PCI-DSS compliant</p>
-                    </div>
-                    <div className="border rounded-lg p-4">
-                      <h4 className="font-semibold text-gray-900">Resend (Email)</h4>
-                      <p className="text-gray-600 text-sm">Sends transactional and notification emails</p>
+
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">Legal Requirements</h3>
+                      <ul className="list-disc list-inside space-y-2 text-gray-700">
+                        <li>We may disclose your information if required by law or court order</li>
+                        <li>To protect our rights, property, or safety, or that of our users</li>
+                        <li>In connection with a merger, acquisition, or sale of assets (users will be notified)</li>
+                      </ul>
                     </div>
                   </div>
-
-                  <p className="text-gray-700 mt-4">We may also share data:</p>
-                  <ul className="list-disc list-inside space-y-2 text-gray-700">
-                    <li>With your explicit consent</li>
-                    <li>To comply with legal obligations or court orders</li>
-                    <li>To protect our rights, privacy, safety, or property</li>
-                    <li>In connection with a merger, acquisition, or sale of assets (with notice)</li>
-                  </ul>
                 </section>
 
-                {/* 6. Data Security */}
+                {/* 4. Data Security */}
                 <section id="data-security">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
                       <Lock className="h-5 w-5 text-orange-600" />
                     </div>
-                    <h2 className="text-2xl font-bold text-gray-900 m-0">6. Data Security</h2>
+                    <h2 className="text-2xl font-bold text-gray-900 m-0">4. Data Security</h2>
                   </div>
-                  <p className="text-gray-700 leading-relaxed mb-4">
-                    We implement industry-standard security measures to protect your data:
-                  </p>
                   <ul className="list-disc list-inside space-y-2 text-gray-700">
-                    <li><strong>Encryption in Transit:</strong> All data transmitted using TLS 1.3</li>
-                    <li><strong>Encryption at Rest:</strong> All personal data encrypted using AES-256</li>
-                    <li><strong>Access Controls:</strong> Role-based access with principle of least privilege</li>
-                    <li><strong>Authentication:</strong> Secure password hashing, optional 2FA</li>
-                    <li><strong>Infrastructure:</strong> SOC 2 Type II certified cloud providers</li>
-                    <li><strong>Monitoring:</strong> 24/7 security monitoring and intrusion detection</li>
-                    <li><strong>Audits:</strong> Regular security assessments and penetration testing</li>
+                    <li>We implement industry-standard security measures including encryption, secure servers, and access controls</li>
+                    <li>All payment information is processed through secure third-party payment providers</li>
+                    <li>We use SSL/TLS encryption to protect data transmission</li>
+                    <li>Regular security updates to protect against vulnerabilities</li>
+                    <li>We advise users to use strong passwords and be cautious of phishing attempts</li>
                   </ul>
                 </section>
 
-                {/* 7. Data Retention */}
-                <section id="data-retention">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
-                      <Clock className="h-5 w-5 text-yellow-600" />
+                {/* 5. Your Rights and Choices */}
+                <section id="your-rights">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-4">5. Your Rights and Choices</h2>
+                  <div className="grid gap-3">
+                    <div className="bg-gray-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-gray-900">Access and Correction</h4>
+                      <p className="text-gray-600 text-sm">You can access and update your account information at any time through your profile settings</p>
                     </div>
-                    <h2 className="text-2xl font-bold text-gray-900 m-0">7. Data Retention</h2>
-                  </div>
-                  <div className="space-y-4">
-                    <div className="border rounded-lg p-4">
-                      <h4 className="font-semibold text-gray-900">Active Accounts</h4>
-                      <p className="text-gray-600">Data retained while your account is active</p>
+                    <div className="bg-gray-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-gray-900">Deletion</h4>
+                      <p className="text-gray-600 text-sm">You can delete your account and data at any time from your account settings</p>
                     </div>
-                    <div className="border rounded-lg p-4">
-                      <h4 className="font-semibold text-gray-900">After Account Deletion</h4>
-                      <p className="text-gray-600">Personal data deleted within 30 days; anonymized analytics may be retained</p>
+                    <div className="bg-gray-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-gray-900">Marketing Opt-Out</h4>
+                      <p className="text-gray-600 text-sm">Unsubscribe from marketing emails using the link in any promotional email</p>
                     </div>
-                    <div className="border rounded-lg p-4">
-                      <h4 className="font-semibold text-gray-900">Inactive Accounts</h4>
-                      <p className="text-gray-600">Accounts inactive for 24 months may be deleted with prior notice</p>
-                    </div>
-                    <div className="border rounded-lg p-4">
-                      <h4 className="font-semibold text-gray-900">Legal Requirements</h4>
-                      <p className="text-gray-600">Some data may be retained longer if required by law (e.g., payment records for 7 years)</p>
+                    <div className="bg-gray-50 rounded-lg p-4">
+                      <h4 className="font-semibold text-gray-900">Data Portability</h4>
+                      <p className="text-gray-600 text-sm">Request a copy of your data by contacting our support team</p>
                     </div>
                   </div>
                 </section>
 
-                {/* 8. International Transfers */}
-                <section id="international-transfers">
+                {/* 6. Cookies and Tracking */}
+                <section id="cookies">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-4">6. Cookies and Tracking</h2>
+                  <ul className="list-disc list-inside space-y-2 text-gray-700">
+                    <li><strong>Essential Cookies:</strong> Required for platform functionality, authentication, and security</li>
+                    <li><strong>Analytics Cookies:</strong> Help us understand how users interact with our platform</li>
+                    <li><strong>Preference Cookies:</strong> Remember your settings and preferences</li>
+                  </ul>
+                  <p className="text-gray-700 mt-4">
+                    You can control cookie preferences through your browser settings. For more details,
+                    see our <Link href="/cookies" className="text-orange-600 hover:text-orange-700">Cookie Policy</Link>.
+                  </p>
+                </section>
+
+                {/* 7. International Data Transfers */}
+                <section id="data-transfers">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center">
                       <Globe className="h-5 w-5 text-indigo-600" />
                     </div>
-                    <h2 className="text-2xl font-bold text-gray-900 m-0">8. International Data Transfers</h2>
+                    <h2 className="text-2xl font-bold text-gray-900 m-0">7. International Data Transfers</h2>
                   </div>
-                  <p className="text-gray-700 leading-relaxed mb-4">
-                    Your data may be processed in countries outside your residence. We ensure adequate protection through:
-                  </p>
                   <ul className="list-disc list-inside space-y-2 text-gray-700">
-                    <li>EU-US Data Privacy Framework certification</li>
-                    <li>Standard Contractual Clauses (SCCs) approved by the European Commission</li>
-                    <li>Binding Corporate Rules where applicable</li>
-                    <li>Adequacy decisions for data transfers to approved countries</li>
+                    <li>FitGrit AI is based in Kenya, and your data may be stored on servers in other countries</li>
+                    <li>We may transfer data to service providers in other countries for processing and storage</li>
+                    <li>When we transfer data internationally, we ensure appropriate safeguards are in place</li>
+                    <li>By using our platform, you consent to the transfer of your information as described</li>
                   </ul>
                 </section>
 
-                {/* 9. Your Rights */}
-                <section id="your-rights">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-4">9. Your Rights</h2>
-                  <p className="text-gray-700 leading-relaxed mb-4">You have the following rights regarding your data:</p>
-                  <div className="grid gap-3">
-                    <div className="bg-gray-50 rounded-lg p-4">
-                      <h4 className="font-semibold text-gray-900">Right to Access</h4>
-                      <p className="text-gray-600 text-sm">Request a copy of all personal data we hold about you</p>
-                    </div>
-                    <div className="bg-gray-50 rounded-lg p-4">
-                      <h4 className="font-semibold text-gray-900">Right to Rectification</h4>
-                      <p className="text-gray-600 text-sm">Correct any inaccurate or incomplete data</p>
-                    </div>
-                    <div className="bg-gray-50 rounded-lg p-4">
-                      <h4 className="font-semibold text-gray-900">Right to Erasure ("Right to be Forgotten")</h4>
-                      <p className="text-gray-600 text-sm">Request deletion of your personal data</p>
-                    </div>
-                    <div className="bg-gray-50 rounded-lg p-4">
-                      <h4 className="font-semibold text-gray-900">Right to Data Portability</h4>
-                      <p className="text-gray-600 text-sm">Receive your data in a structured, machine-readable format</p>
-                    </div>
-                    <div className="bg-gray-50 rounded-lg p-4">
-                      <h4 className="font-semibold text-gray-900">Right to Restrict Processing</h4>
-                      <p className="text-gray-600 text-sm">Limit how we use your data in certain circumstances</p>
-                    </div>
-                    <div className="bg-gray-50 rounded-lg p-4">
-                      <h4 className="font-semibold text-gray-900">Right to Object</h4>
-                      <p className="text-gray-600 text-sm">Object to processing based on legitimate interests or direct marketing</p>
-                    </div>
-                    <div className="bg-gray-50 rounded-lg p-4">
-                      <h4 className="font-semibold text-gray-900">Right to Withdraw Consent</h4>
-                      <p className="text-gray-600 text-sm">Withdraw consent at any time without affecting prior processing</p>
-                    </div>
-                  </div>
-                  <p className="text-gray-700 mt-4">
-                    To exercise these rights, email us at <a href="mailto:privacy@fitgrit.ai" className="text-orange-600 hover:text-orange-700">privacy@fitgrit.ai</a>.
-                    We will respond within 30 days.
-                  </p>
-                </section>
-
-                {/* 10. Cookies */}
-                <section id="cookies">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-4">10. Cookies & Tracking Technologies</h2>
-                  <p className="text-gray-700 leading-relaxed mb-4">We use cookies and similar technologies for:</p>
-                  <div className="space-y-3">
-                    <div className="border rounded-lg p-4">
-                      <h4 className="font-semibold text-gray-900">Essential Cookies</h4>
-                      <p className="text-gray-600 text-sm">Required for authentication, security, and basic functionality. Cannot be disabled.</p>
-                    </div>
-                    <div className="border rounded-lg p-4">
-                      <h4 className="font-semibold text-gray-900">Analytics Cookies</h4>
-                      <p className="text-gray-600 text-sm">Help us understand how users interact with our service. Can be disabled.</p>
-                    </div>
-                    <div className="border rounded-lg p-4">
-                      <h4 className="font-semibold text-gray-900">Preference Cookies</h4>
-                      <p className="text-gray-600 text-sm">Remember your settings and preferences. Can be disabled.</p>
-                    </div>
-                  </div>
-                  <p className="text-gray-700 mt-4">
-                    You can manage cookie preferences through your browser settings or our cookie consent banner.
-                  </p>
-                </section>
-
-                {/* 11. Children's Privacy */}
+                {/* 8. Children's Privacy */}
                 <section id="children">
+                  <h2 className="text-2xl font-bold text-gray-900 mb-4">8. Children's Privacy</h2>
+                  <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                    <ul className="list-disc list-inside space-y-2 text-yellow-800 m-0">
+                      <li>FitGrit AI is not intended for users under the age of 18</li>
+                      <li>We do not knowingly collect personal information from children</li>
+                      <li>If we discover that we have collected information from a child, we will promptly delete it</li>
+                      <li>If you believe a child has provided us with personal information, please contact us immediately</li>
+                    </ul>
+                  </div>
+                </section>
+
+                {/* 9. Data Retention */}
+                <section id="retention">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 bg-pink-100 rounded-lg flex items-center justify-center">
-                      <Baby className="h-5 w-5 text-pink-600" />
+                    <div className="w-10 h-10 bg-yellow-100 rounded-lg flex items-center justify-center">
+                      <Clock className="h-5 w-5 text-yellow-600" />
                     </div>
-                    <h2 className="text-2xl font-bold text-gray-900 m-0">11. Children's Privacy (COPPA)</h2>
+                    <h2 className="text-2xl font-bold text-gray-900 m-0">9. Data Retention</h2>
                   </div>
-                  <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                    <p className="text-red-800 m-0">
-                      FitGrit AI is not intended for children under 16 years of age. We do not knowingly collect
-                      personal information from children under 16. If we discover we have collected data from a child
-                      under 16, we will delete it immediately. If you believe we have collected data from a child,
-                      please contact us at <a href="mailto:privacy@fitgrit.ai" className="text-red-700 underline">privacy@fitgrit.ai</a>.
-                    </p>
-                  </div>
-                </section>
-
-                {/* 12. California Privacy Rights */}
-                <section id="california">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-4">12. California Privacy Rights (CCPA/CPRA)</h2>
-                  <p className="text-gray-700 leading-relaxed mb-4">
-                    California residents have additional rights under the California Consumer Privacy Act (CCPA) and
-                    California Privacy Rights Act (CPRA):
-                  </p>
                   <ul className="list-disc list-inside space-y-2 text-gray-700">
-                    <li><strong>Right to Know:</strong> What personal information we collect and how we use it</li>
-                    <li><strong>Right to Delete:</strong> Request deletion of your personal information</li>
-                    <li><strong>Right to Correct:</strong> Request correction of inaccurate information</li>
-                    <li><strong>Right to Opt-Out of Sale:</strong> We do NOT sell personal information</li>
-                    <li><strong>Right to Non-Discrimination:</strong> We will not discriminate against you for exercising your rights</li>
-                    <li><strong>Right to Limit Use of Sensitive Personal Information:</strong> Limit use of health data to service provision</li>
+                    <li>We retain your personal information for as long as your account is active</li>
+                    <li>After account deletion, we may retain certain information for legal compliance (up to 90 days)</li>
+                    <li>Payment records are kept as required by tax and financial regulations</li>
                   </ul>
-                  <p className="text-gray-700 mt-4">
-                    To exercise these rights, contact us at <a href="mailto:privacy@fitgrit.ai" className="text-orange-600">privacy@fitgrit.ai</a> or
-                    call our privacy hotline. We may verify your identity before processing your request.
-                  </p>
                 </section>
 
-                {/* 13. EU/UK Privacy Rights */}
-                <section id="eu-uk">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-4">13. EU/UK Privacy Rights (GDPR)</h2>
-                  <p className="text-gray-700 leading-relaxed mb-4">
-                    If you are in the European Economic Area (EEA) or United Kingdom, you have rights under the
-                    General Data Protection Regulation (GDPR) including:
-                  </p>
-                  <ul className="list-disc list-inside space-y-2 text-gray-700">
-                    <li>All rights listed in Section 9 above</li>
-                    <li>Right to lodge a complaint with your local data protection authority</li>
-                    <li>Right to be informed about automated decision-making and profiling</li>
-                  </ul>
-                  <p className="text-gray-700 mt-4">
-                    <strong>Automated Decision-Making:</strong> Our AI coach provides recommendations based on your data.
-                    These are suggestions only and do not constitute legally binding decisions. You can request human
-                    review of any automated recommendation.
-                  </p>
-                </section>
-
-                {/* 14. Changes */}
+                {/* 10. Changes to This Policy */}
                 <section id="changes">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-4">14. Changes to This Policy</h2>
-                  <p className="text-gray-700 leading-relaxed">
-                    We may update this Privacy Policy to reflect changes in our practices or legal requirements.
-                    For significant changes, we will:
-                  </p>
-                  <ul className="list-disc list-inside space-y-2 text-gray-700 mt-2">
-                    <li>Notify you via email at least 30 days before changes take effect</li>
-                    <li>Display a prominent notice in the app</li>
-                    <li>Update the "Last updated" date at the top of this policy</li>
-                    <li>Obtain renewed consent where required by law</li>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-4">10. Changes to This Policy</h2>
+                  <ul className="list-disc list-inside space-y-2 text-gray-700">
+                    <li>We may update this Privacy Policy from time to time to reflect changes in our practices</li>
+                    <li>We will notify you of material changes via email or through a notice on our platform</li>
+                    <li>Your continued use of FitGrit AI after changes are posted constitutes acceptance of the updated policy</li>
+                    <li>We encourage you to review this policy periodically</li>
                   </ul>
                 </section>
 
-                {/* 15. Contact */}
+                {/* 11. Contact Us */}
                 <section id="contact">
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center">
                       <Mail className="h-5 w-5 text-teal-600" />
                     </div>
-                    <h2 className="text-2xl font-bold text-gray-900 m-0">15. Contact Us</h2>
+                    <h2 className="text-2xl font-bold text-gray-900 m-0">11. Contact Us</h2>
                   </div>
                   <p className="text-gray-700 leading-relaxed mb-4">
-                    Questions, concerns, or requests about this Privacy Policy? We're here to help:
+                    If you have questions, concerns, or requests regarding this Privacy Policy or your personal data, please contact us:
                   </p>
                   <div className="bg-gray-50 rounded-lg p-4">
                     <p className="text-gray-700 m-0">
-                      <strong>Privacy Inquiries:</strong> <a href="mailto:privacy@fitgrit.ai" className="text-orange-600">privacy@fitgrit.ai</a><br />
-                      <strong>Data Protection Officer:</strong> <a href="mailto:dpo@fitgrit.ai" className="text-orange-600">dpo@fitgrit.ai</a><br />
-                      <strong>General Support:</strong> <a href="mailto:support@fitgrit.ai" className="text-orange-600">support@fitgrit.ai</a>
+                      <strong>Email:</strong> <a href="mailto:dennis@fitgritai.com" className="text-orange-600">dennis@fitgritai.com</a><br />
+                      <strong>Address:</strong> Nairobi, Kenya
                     </p>
                   </div>
                   <p className="text-gray-700 mt-4">
-                    We aim to respond to all inquiries within 48 hours on business days.
+                    We will respond to your inquiry as soon as possible.
                   </p>
                 </section>
 
@@ -451,18 +303,23 @@ export default function PrivacyPage() {
             </CardContent>
           </Card>
 
-          {/* CTA */}
+          {/* Your Privacy Rights */}
           <div className="mt-12 text-center">
             <Card className="border-0 shadow-lg bg-gradient-to-br from-blue-50 to-indigo-50">
               <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Ready to start your private journey?</h3>
-                <p className="text-gray-700 mb-6">Your data stays secure while you achieve real results.</p>
-                <div className="flex gap-4 justify-center">
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">Your Privacy Rights</h3>
+                <p className="text-gray-700 mb-6">
+                  You have the right to access, correct, or delete your personal information at any time.
+                </p>
+                <div className="flex gap-4 justify-center flex-wrap">
                   <Button asChild className="rounded-xl">
-                    <Link href="/auth">Start Free & Private</Link>
+                    <Link href="/auth">Get Started</Link>
                   </Button>
                   <Button variant="outline" asChild className="rounded-xl">
-                    <Link href="/terms">View Terms</Link>
+                    <Link href="/terms">Terms of Service</Link>
+                  </Button>
+                  <Button variant="outline" asChild className="rounded-xl">
+                    <Link href="/cookies">Cookie Policy</Link>
                   </Button>
                 </div>
               </CardContent>

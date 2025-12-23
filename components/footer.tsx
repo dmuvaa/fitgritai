@@ -46,7 +46,7 @@ export function Footer() {
                 <Linkedin className="h-5 w-5" />
               </a>
               <a
-                href="mailto:support@fitgrit.ai"
+                href="mailto:dennis@fitgritai.com"
                 className="w-10 h-10 bg-gray-800 hover:bg-gradient-to-r hover:from-orange-500 hover:to-red-500 rounded-lg flex items-center justify-center transition-all duration-300"
                 aria-label="Email"
               >
@@ -99,7 +99,7 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <a href="mailto:support@fitgrit.ai" className="text-gray-400 hover:text-white transition-colors">
+                <a href="mailto:dennis@fitgritai.com" className="text-gray-400 hover:text-white transition-colors">
                   Contact Us
                 </a>
               </li>
@@ -126,13 +126,8 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/privacy#cookies" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/cookies" className="text-gray-400 hover:text-white transition-colors">
                   Cookie Policy
-                </Link>
-              </li>
-              <li>
-                <Link href="/privacy#gdpr" className="text-gray-400 hover:text-white transition-colors">
-                  GDPR Rights
                 </Link>
               </li>
             </ul>

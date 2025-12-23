@@ -97,7 +97,7 @@ export default function FAQPage() {
         {
           question: "How do I contact support?",
           answer:
-            "Reach out through the in-app support chat, email us at support@fitgrit.ai, or visit our help center for instant answers.",
+            "Reach out through the in-app support chat, email us at dennis@fitgritai.com, or visit our help center for instant answers.",
         },
         {
           question: "Is FitGrit suitable for medical conditions?",
@@ -153,7 +153,7 @@ export default function FAQPage() {
                     <Link href="/auth">Start Free Trial</Link>
                   </Button>
                   <Button variant="outline" asChild className="rounded-xl bg-transparent">
-                    <Link href="mailto:support@fitgrit.ai">Contact Support</Link>
+                    <Link href="mailto:dennis@fitgritai.com">Contact Support</Link>
                   </Button>
                 </div>
               </CardContent>
